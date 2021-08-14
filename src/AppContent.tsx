@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import GenerateMessage from "./backend/generateMessage";
 
 
-function App() {
+function AppContent() {
     const [name, setName] = React.useState("John Smith");
 
     const generateMessage = new GenerateMessage();
@@ -19,4 +19,4 @@ function App() {
     )
 }
 
-export default App;
+export default AppContent;
