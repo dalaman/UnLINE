@@ -5,3 +5,5 @@
 * CamelCase
 
 * Hungarian notation
+
+* *yarn* as package manager
