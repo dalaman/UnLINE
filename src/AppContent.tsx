@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import Header from "./components/Header";
-import GenerateMessage from "./backend/generateMessage";
+import GenerateMessage from "./UnLINE-backend/generateMessage";
 
 
 function AppContent() {
