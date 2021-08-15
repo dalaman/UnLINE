@@ -33,3 +33,13 @@ By reading your talk history, the new phony messages would be fabricated
 ## Dev
 
 1. `yarn start`
+
+## Update Backend
+
+1. `cd src/UnLINE-backend`
+
+2. `git pull origin master`
+
+3. `cd ../../`
+
+4. `git submodule update`
