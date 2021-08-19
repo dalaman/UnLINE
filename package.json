@@ -10,11 +10,19 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@react-navigation/native": "^6.0.2",
+    "@react-navigation/native-stack": "^6.1.0",
     "@types/kuromoji": "^0.1.1",
     "kuromoji": "^0.1.2",
+    "native-base": "^3.1.0",
     "python-shell": "^3.0.0",
     "react": "17.0.1",
     "react-native": "0.64.1",
+    "react-native-safe-area-context": "^3.3.0",
+    "react-native-screens": "^3.5.0",
+    "react-native-svg": "^12.1.1",
+    "styled-components": "^5.3.0",
+    "styled-system": "^5.1.5",
     "tiny-segmenter": "^0.2.0"
   },
   "devDependencies": {
