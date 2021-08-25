@@ -5,6 +5,7 @@ import GenerateMessage from "./UnLINE-backend/generateMessage";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NativeBaseProvider, Box, Button, Center, Avatar } from 'native-base';
+import TalkScreen from './TalkScreen';
 
 
 function HomeScreen({navigation}) {
@@ -16,42 +17,6 @@ function HomeScreen({navigation}) {
             </Box>
         </NativeBaseProvider>
     )
-}
-
-function TalkScreen() {
-    const [messageList, setMessageList] = useState([]);
-
-    const handleSend = () => {
-        let newMessageList = messageList.slice();
-        let newMessage = {key: 'send: message' + messageList.length};
-        newMessageList.push(newMessage);
-        setMessageList(newMessageList);
-    }
-
-    const handleReceive = () => {
-        let newMessageList = messageList.slice();
-        let newMessage = {key: 'receive: message' + messageList.length};
-        newMessageList.push(newMessage);
-        setMessageList(newMessageList);
-    }
-
-    return (
-        <NativeBaseProvider>
-            <Box style={{flex:1}}>
-                <FlatList
-                    data={messageList}
-                    renderItem={({item}) => <Text>{item.key}</Text>}
-                />
-
-                <Center>
-                    <Button.Group>
-                        <Button onPress={handleReceive}>receive</Button>
-                        <Button onPress={handleSend}>send</Button>
-                    </Button.Group>
-                </Center>
-            </Box>
-        </NativeBaseProvider>
-    );
 }
 
 const Stack = createNativeStackNavigator();
