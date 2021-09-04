@@ -8,9 +8,11 @@ import RNFS from 'react-native-fs';
 
 export default function TalkScreen({route}) {
     const [messageList, setMessageList] = useState([]);
-    const {name, uri} = route.params;
+    const {name, uri, content} = route.params;
 
     const fileuri = JSON.stringify(uri);
+
+    const generateMessage = new GenerateMessage(JSON.stringify(content))
     
     //getRealPath(JSON.stringify(uri)).then((result) => {console.log(result)});
     //const generateMessage = new GenerateMessage(content);
@@ -20,7 +22,7 @@ export default function TalkScreen({route}) {
         let newMessageList = messageList.slice();
         let newMessage = {
             key: messageList.length,
-            content: "message here, key: " + messageList.length,
+            content: isSender ? generateMessage.getGeneratedMessage("sender") : generateMessage.getGeneratedMessage(generateMessage.opponentName),
             isSender: isSender
         };
         newMessageList.push(newMessage);

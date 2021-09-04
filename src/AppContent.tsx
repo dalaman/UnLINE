@@ -4,30 +4,36 @@ import Header from "./components/Header";
 import GenerateMessage from "./UnLINE-backend/generateMessage";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NativeBaseProvider, Box, Button, Center, Avatar } from 'native-base';
+import { NativeBaseProvider, Box, Button, Center, Input } from 'native-base';
 import TalkScreen from './TalkScreen';
 import DocumentPicker from 'react-native-document-picker';
 
 
-function HomeScreen({navigation}) {
+function HomeScreen({ navigation }) {
     let fileInfo;
+    const [content, setContent] = useState('');
 
     return (
         <NativeBaseProvider>
             <Box>
-                <Button onPress={() => navigation.navigate('Talk', {name: fileInfo.name, uri: fileInfo.uri})}>import talk history and Talk</Button>
+                <Button onPress={() => navigation.navigate('Talk', { name: fileInfo.name, uri: fileInfo.uri, content: content })}>import talk history and Talk</Button>
                 <Button onPress={() => {
                     pickOneFile().then((res) => {
                         fileInfo = res;
                     });
                 }}>pick file</Button>
+                <Input
+                    onChangeText={text => setContent(text)}
+                    defaultValue={content}
+                />
+                <Text>{content}</Text>
             </Box>
         </NativeBaseProvider>
     )
 }
 
 const pickOneFile = async () => {
-    try{
+    try {
         const res = await DocumentPicker.pick({
             type: [DocumentPicker.types.allFiles],
         });
@@ -35,7 +41,7 @@ const pickOneFile = async () => {
         console.log(res[0].uri);
         return res[0];
     } catch (err) {
-        if(DocumentPicker.isCancel(err)){
+        if (DocumentPicker.isCancel(err)) {
             console.log("canceled");
             return 'picking canceled';
         } else {
