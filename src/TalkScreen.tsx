@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, FlatList } from 'react-native';
-import GenerateMessage from "./UnLINE-backend/generateMessage";
+import GenerateMessage from "./UnLINE-backend/GenerateMessage";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NativeBaseProvider, Box, Button, Center, Avatar } from 'native-base';
+import RNFS from 'react-native-fs';
 
-export default function TalkScreen() {
+export default function TalkScreen({route}) {
     const [messageList, setMessageList] = useState([]);
+    const {name, uri} = route.params;
+
+    const fileuri = JSON.stringify(uri);
+    
+    //getRealPath(JSON.stringify(uri)).then((result) => {console.log(result)});
+    //const generateMessage = new GenerateMessage(content);
+    //console.log("message: ", generateMessage.getGeneratedMessage("生方"));
 
     const handleMessageButton = (isSender: boolean) => {
         let newMessageList = messageList.slice();
@@ -22,6 +30,8 @@ export default function TalkScreen() {
     return (
         <NativeBaseProvider>
             <Box style={{flex:1}}>
+                <Box>{JSON.stringify(uri)}</Box>
+                <Box>{JSON.stringify(name)}</Box>
                 <FlatList
                     data={messageList}
                     renderItem={({item}) => <Text>{item.content}</Text>}
