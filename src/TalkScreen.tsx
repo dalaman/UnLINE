@@ -2,18 +2,20 @@ import React, { useState } from 'react';
 import { View, Text, ScrollView, FlatList } from 'react-native';
 import GenerateMessage from "./UnLINE-backend/GenerateMessage";
 import { NativeBaseProvider, Box, Button, Center, Avatar } from 'native-base';
+import {tmpData} from './tmp';
 
 export default function TalkScreen({route}) {
     const [messageList, setMessageList] = useState([]);
     const {content} = route.params;
 
-    const generateMessage = new GenerateMessage(JSON.stringify(content))
+    const generateMessage = new GenerateMessage(content);
+
     const handleMessageButton = (isSender: boolean) => {
         let newMessageList = messageList.slice();
         let newMessage = {
             key: messageList.length,
-            content: 'aaa',
-            //content: isSender ? generateMessage.getGeneratedMessage("sender") : generateMessage.getGeneratedMessage(generateMessage.opponentName),
+            //content: 'aaa',
+            content: isSender ? generateMessage.getGeneratedMessage("sender") : generateMessage.getGeneratedMessage(generateMessage.opponentName),
             isSender: isSender
         };
         newMessageList.push(newMessage);
